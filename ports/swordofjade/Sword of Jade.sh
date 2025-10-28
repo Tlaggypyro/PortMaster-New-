@@ -16,6 +16,14 @@ source $controlfolder/device_info.txt
 
 [ -f "${controlfolder}/mod_${CFW_NAME}.txt" ] && source "${controlfolder}/mod_${CFW_NAME}.txt"
 
+# Extract game files on 1st run
+if [ ! -d "$GAMEDIR/gm" ]; then
+    "$GAMEDIR/7zzs" x "$GAMEDIR/sword-of-jade.rpg.7z" -o"$GAMEDIR/"
+     "$GAMEDIR/7zzs" x "$GAMEDIR/FluidR3_GM.sf2.7z" -o"$GAMEDIR/"
+    sleep 1
+    rm -f "$GAMEDIR/sword-of-jade.rpg.7z" 
+ rm -f "$GAMEDIR/FluidR3_GM.sf2.7z"
+fi
 get_controls
 
 GAMEDIR=/$directory/ports/swordofjade
